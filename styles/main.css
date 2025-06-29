@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "League Spartan", sans-serif;
+  background: #f5eddc;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px;
+}
+
+#main {
+  display: flex;
+  justify-content: center;
+}
+
+#board {
+  width: 70vw;
+  height: 80vh;
+  border: 2px solid #181818;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#player {
+  background: #5c7f71;
+  position: absolute;
+}
+
+.elevator {
+  width: 10vw;
+  height: 30vh;
+  background-color: #ba8530;
+}
