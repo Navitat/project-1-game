@@ -3,12 +3,25 @@ const boardElm = document.querySelector("#board");
 
 class Player {
   constructor() {
-    this.width = 3;
-    this.height = 10;
+    this.width = 2;
+    this.height = 7;
     this.positionX = 4;
     this.positionY = 1;
+    this.playerElm = null;
 
-    this.updateUI();
+    this.createPlayer();
+  }
+
+  createPlayer() {
+    this.playerElm = document.createElement("div");
+    this.playerElm.setAttribute("id", "player");
+    this.playerElm.style.width = this.width + "vw";
+    this.playerElm.style.height = this.height + "vh";
+    this.playerElm.style.left = this.positionX + "vw";
+    this.playerElm.style.bottom = this.positionY + "vh";
+
+    const elevatorElm = document.querySelector("#elevator");
+    elevatorElm.appendChild(this.playerElm);
   }
 
   updateUI() {
@@ -38,10 +51,11 @@ class Player {
 
 class Elevator {
   constructor() {
-    this.width = 10;
-    this.height = 20;
+    this.width = 7;
+    this.height = 15;
     this.positionY = 0; // bottom in css
     this.elevatorElm = null;
+    this.direction = 1;
 
     this.createElevator();
   }
@@ -60,8 +74,13 @@ class Elevator {
     this.elevatorElm.style.bottom = this.positionY + "vh";
   }
 
-  move() {
-    //this.positionY++;
+  movement() {
+    this.positionY += this.direction * 2;
+
+    if (this.positionY === 32 || this.positionY === -32) {
+      this.direction *= -1;
+    }
+
     this.updateUI();
   }
 }
@@ -79,5 +98,9 @@ document.addEventListener("keydown", (event) => {
 });
 
 setInterval(() => {
-  elevator.move();
-}, 5_00);
+  elevator.movement();
+}, 2_00);
+
+// setInterval(() => {
+//   elevator.moveDown();
+// }, 2_00);
