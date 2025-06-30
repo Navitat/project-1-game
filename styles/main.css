@@ -34,11 +34,12 @@ h1 {
   align-items: center;
 }
 
+#elevator {
+  background-color: #ba8530;
+  position: relative;
+}
+
 #player {
   background: #5c7f71;
   position: absolute;
-}
-
-.elevator {
-  background-color: #ba8530;
 }

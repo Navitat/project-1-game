@@ -3,10 +3,10 @@ const boardElm = document.querySelector("#board");
 
 class Player {
   constructor() {
-    this.width = 5;
-    this.height = 5;
-    this.positionX = 32;
-    this.positionY = 10;
+    this.width = 3;
+    this.height = 10;
+    this.positionX = 4;
+    this.positionY = 1;
 
     this.updateUI();
   }
@@ -34,46 +34,40 @@ class Player {
     }
     this.updateUI();
   }
-
-  moveUp() {
-    this.positionY++;
-    this.updateUI();
-  }
-
-  moveDown() {
-    this.positionY--;
-    this.updateUI();
-  }
 }
 
-class Floor {
-  constructor(floor) {
+class Elevator {
+  constructor() {
     this.width = 10;
-    this.height = 30;
-    this.floor = floor;
-    this.elevators = [];
+    this.height = 20;
+    this.positionY = 0; // bottom in css
+    this.elevatorElm = null;
 
-    this.updateUI();
+    this.createElevator();
+  }
+
+  createElevator() {
+    this.elevatorElm = document.createElement("div");
+    this.elevatorElm.setAttribute("id", "elevator");
+    this.elevatorElm.style.width = this.width + "vw";
+    this.elevatorElm.style.height = this.height + "vh";
+    this.elevatorElm.style.bottom = this.positionY + "vh";
+
+    boardElm.appendChild(this.elevatorElm);
   }
 
   updateUI() {
-    for (let i = 0; i < this.floor; i++) {
-      const elevator = document.createElement("div");
-      elevator.classList.add("elevator");
-      elevator.style.width = this.width + "vw";
-      elevator.style.height = this.height + "vh";
-      this.elevators.push(elevator);
-    }
+    this.elevatorElm.style.bottom = this.positionY + "vh";
+  }
 
-    this.elevators.forEach((element) => {
-      boardElm.appendChild(element);
-    });
+  move() {
+    //this.positionY++;
+    this.updateUI();
   }
 }
 
+const elevator = new Elevator();
 const player = new Player();
-
-const floor = new Floor(1);
 
 //Event listener to move player
 document.addEventListener("keydown", (event) => {
@@ -81,12 +75,9 @@ document.addEventListener("keydown", (event) => {
     player.moveLeft();
   } else if (event.code === "ArrowRight") {
     player.moveRight();
-  } else if (event.code === "ArrowUp") {
-    player.moveUp();
-  } else if (event.code === "ArrowDown") {
-    player.moveDown();
   }
 });
 
-// detect if player touches elevator
-// NEED TO CREATE ELEVATOR WITH JS
+setInterval(() => {
+  elevator.move();
+}, 5_00);
