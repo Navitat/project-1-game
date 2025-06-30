@@ -8,6 +8,8 @@ class Player {
     this.positionX = 4;
     this.positionY = 1;
     this.playerElm = null;
+    this.bullets = [];
+    this.viewpoint = true; // true = right - false = left
 
     this.createPlayer();
   }
@@ -42,10 +44,17 @@ class Player {
 
   moveRight() {
     this.positionX++;
-    if (this.positionX > 64.5) {
-      this.positionX = 64.5;
+    if (this.positionX > 5) {
+      this.positionX = 5;
     }
     this.updateUI();
+  }
+
+  shoot() {
+    // console.log("pew pew!");
+    const bullet = new Bullet();
+    this.bullets.push(bullet);
+    console.log(this.bullets);
   }
 }
 
@@ -85,6 +94,38 @@ class Elevator {
   }
 }
 
+class Bullet {
+  constructor() {
+    this.width = 1;
+    this.height = 0.5;
+    // this.positionX = 0;
+    this.positionY = 0;
+    this.bulletElm = null;
+
+    this.createDomElement();
+  }
+
+  createDomElement() {
+    this.bulletElm = document.createElement("div");
+    this.bulletElm.className = "bullet";
+    this.bulletElm.style.width = this.width + "vw";
+    this.bulletElm.style.height = this.height + "vh";
+    this.bulletElm.style.left = this.positionY + "vh";
+
+    const playerElm = document.querySelector("#player");
+    playerElm.appendChild(this.bulletElm);
+  }
+
+  updateUI() {
+    this.bulletElm.style.left = this.positionY + "vw"; //left in CSS
+  }
+
+  moveBullet() {
+    this.positionY++;
+    this.updateUI();
+  }
+}
+
 const elevator = new Elevator();
 const player = new Player();
 
@@ -92,15 +133,26 @@ const player = new Player();
 document.addEventListener("keydown", (event) => {
   if (event.code === "ArrowLeft") {
     player.moveLeft();
+    player.direction = false;
   } else if (event.code === "ArrowRight") {
     player.moveRight();
+    player.direction = true;
+  } else if (event.code === "Space") {
+    player.shoot();
   }
 });
 
+//Elevator up and down
 setInterval(() => {
   elevator.movement();
-}, 2_00);
+}, 99);
+
+setInterval(() => {
+  player.bullets.forEach((element) => {
+    element.moveBullet();
+  });
+}, 2_0);
 
 // setInterval(() => {
-//   elevator.moveDown();
-// }, 2_00);
+//   player.bullets.shift();
+// }, 2_000);

@@ -32,6 +32,7 @@ h1 {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  overflow: hidden;
 }
 
 #elevator {
@@ -42,4 +43,10 @@ h1 {
 #player {
   background: #5c7f71;
   position: absolute;
+}
+
+.bullet {
+  background-color: #181818;
+  position: absolute;
+  z-index: 2;
 }
