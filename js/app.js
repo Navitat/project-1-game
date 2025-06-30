@@ -6,7 +6,7 @@ class Player {
     this.width = 5;
     this.height = 5;
     this.positionX = 32;
-    this.positionY = 15;
+    this.positionY = 10;
 
     this.updateUI();
   }
@@ -46,7 +46,34 @@ class Player {
   }
 }
 
+class Floor {
+  constructor(floor) {
+    this.width = 10;
+    this.height = 30;
+    this.floor = floor;
+    this.elevators = [];
+
+    this.updateUI();
+  }
+
+  updateUI() {
+    for (let i = 0; i < this.floor; i++) {
+      const elevator = document.createElement("div");
+      elevator.classList.add("elevator");
+      elevator.style.width = this.width + "vw";
+      elevator.style.height = this.height + "vh";
+      this.elevators.push(elevator);
+    }
+
+    this.elevators.forEach((element) => {
+      boardElm.appendChild(element);
+    });
+  }
+}
+
 const player = new Player();
+
+const floor = new Floor(1);
 
 //Event listener to move player
 document.addEventListener("keydown", (event) => {
