@@ -1,6 +1,7 @@
 const boardElm = document.querySelector("#board");
 //boardElm.setAttribute("tabIndex", 0); // make the #board focusable to only move the player when you click on the board (necessary?)
 const pointsSelector = document.querySelector("#points-selector");
+
 //
 // CLASSES
 //
@@ -15,6 +16,7 @@ class Player {
     this.bullets = [];
     this.viewpoint = true; // true = right - false = left
     this.points = 0;
+    this.timeRemaining = 10;
 
     this.createPlayer();
   }
@@ -189,7 +191,26 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-// POINTS ELEMENT
+//
+//TIMER
+//
+let timer;
+timer = setInterval(() => {
+  player.timeRemaining--;
+  const minutes = Math.floor(player.timeRemaining / 60)
+    .toString()
+    .padStart(2, "0");
+  const seconds = (player.timeRemaining % 60).toString().padStart(2, "0");
+
+  //display on time container
+  const timeRemainingContainer = document.querySelector("#time-remaining");
+  timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+}, 1_000);
+
+setTimeout(() => {
+  clearInterval(timer);
+  alert("GameOver!");
+}, 10_000);
 
 //Elevator up and down
 setInterval(() => {
