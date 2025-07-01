@@ -4,7 +4,7 @@ const boardElm = document.querySelector("#board");
 class Player {
   constructor() {
     this.width = 2;
-    this.height = 7;
+    this.height = 5;
     this.positionX = 4;
     this.positionY = 1;
     this.playerElm = null;
@@ -52,9 +52,13 @@ class Player {
 
   shoot() {
     // console.log("pew pew!");
-    const bullet = new Bullet();
+    const bulletVerticalPos = elevator.positionY + player.height * 0.8;
+
+    const bulletSpeed = player.viewpoint ? 1 : -1;
+
+    const bullet = new Bullet(bulletVerticalPos, bulletSpeed);
     this.bullets.push(bullet);
-    console.log(this.bullets);
+    //console.log(this.bullets);
   }
 }
 
@@ -86,7 +90,7 @@ class Elevator {
   movement() {
     this.positionY += this.direction * 2;
 
-    if (this.positionY === 32 || this.positionY === -32) {
+    if (this.positionY === 68 || this.positionY === 0) {
       this.direction *= -1;
     }
 
@@ -95,12 +99,14 @@ class Elevator {
 }
 
 class Bullet {
-  constructor() {
+  constructor(startingY, bulletSpeed, startingX) {
     this.width = 1;
     this.height = 0.5;
-    // this.positionX = 0;
-    this.positionY = 0;
+    this.positionX = 35; // should be startingX
+    this.positionY = startingY;
+    console.log(this.positionY);
     this.bulletElm = null;
+    this.speed = bulletSpeed;
 
     this.createDomElement();
   }
@@ -110,18 +116,20 @@ class Bullet {
     this.bulletElm.className = "bullet";
     this.bulletElm.style.width = this.width + "vw";
     this.bulletElm.style.height = this.height + "vh";
-    this.bulletElm.style.left = this.positionY + "vh";
+    this.bulletElm.style.left = this.positionX + "vw";
+    this.bulletElm.style.bottom = this.positionY + "vh";
 
-    const playerElm = document.querySelector("#player");
-    playerElm.appendChild(this.bulletElm);
+    // const playerElm = document.querySelector("#player");
+    boardElm.appendChild(this.bulletElm);
   }
 
   updateUI() {
-    this.bulletElm.style.left = this.positionY + "vw"; //left in CSS
+    this.bulletElm.style.left = this.positionX + "vw"; //left in CSS
+    this.bulletElm.style.bottom = this.positionY + "vh";
   }
 
   moveBullet() {
-    this.positionY++;
+    this.positionX += this.speed;
     this.updateUI();
   }
 }
@@ -132,11 +140,11 @@ const player = new Player();
 //Event listener to move player
 document.addEventListener("keydown", (event) => {
   if (event.code === "ArrowLeft") {
+    player.viewpoint = false;
     player.moveLeft();
-    player.direction = false;
   } else if (event.code === "ArrowRight") {
+    player.viewpoint = true;
     player.moveRight();
-    player.direction = true;
   } else if (event.code === "Space") {
     player.shoot();
   }
@@ -145,14 +153,11 @@ document.addEventListener("keydown", (event) => {
 //Elevator up and down
 setInterval(() => {
   elevator.movement();
-}, 99);
+}, 100);
 
+// move bullets
 setInterval(() => {
   player.bullets.forEach((element) => {
     element.moveBullet();
   });
-}, 2_0);
-
-// setInterval(() => {
-//   player.bullets.shift();
-// }, 2_000);
+}, 30);

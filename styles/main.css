@@ -37,7 +37,7 @@ h1 {
 
 #elevator {
   background-color: #ba8530;
-  position: relative;
+  position: absolute;
 }
 
 #player {
