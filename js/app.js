@@ -56,7 +56,7 @@ class Player {
 
     const bulletSpeed = player.viewpoint ? 1 : -1;
 
-    const bullet = new Bullet(bulletVerticalPos, bulletSpeed);
+    const bullet = new Bullet(bulletVerticalPos, bulletSpeed, this.positionX);
     this.bullets.push(bullet);
     //console.log(this.bullets);
   }
@@ -104,7 +104,7 @@ class Bullet {
     this.height = 0.5;
     this.positionX = 35; // should be startingX
     this.positionY = startingY;
-    console.log(this.positionY);
+    //console.log(this.positionY);
     this.bulletElm = null;
     this.speed = bulletSpeed;
 
@@ -121,6 +121,10 @@ class Bullet {
 
     // const playerElm = document.querySelector("#player");
     boardElm.appendChild(this.bulletElm);
+
+    setTimeout(() => {
+      this.bulletElm.remove();
+    }, 2000);
   }
 
   updateUI() {
