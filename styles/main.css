@@ -21,7 +21,7 @@ h1 {
 
 #main {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 #board {
@@ -57,4 +57,15 @@ h1 {
   background-color: green;
   border-radius: 50%;
   z-index: 0;
+}
+
+#points {
+  position: relative;
+  bottom: 35vh;
+  left: 20vw;
+  font-size: 26px;
+}
+
+#instructions {
+  text-align: center;
 }
