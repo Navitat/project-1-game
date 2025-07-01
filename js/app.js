@@ -1,6 +1,10 @@
 const boardElm = document.querySelector("#board");
 //boardElm.setAttribute("tabIndex", 0); // make the #board focusable to only move the player when you click on the board (necessary?)
 
+//
+// CLASSES
+//
+
 class Player {
   constructor() {
     this.width = 2;
@@ -10,6 +14,7 @@ class Player {
     this.playerElm = null;
     this.bullets = [];
     this.viewpoint = true; // true = right - false = left
+    this.points = 0;
 
     this.createPlayer();
   }
@@ -138,6 +143,33 @@ class Bullet {
   }
 }
 
+class Objective {
+  constructor() {
+    this.width = 2;
+    this.height = 2;
+    this.positionX = Math.floor(Math.random() * (70 - this.width)); //create randomly
+    this.positionY = Math.floor(Math.random() * (70 - this.height)); // create randomly
+    this.obstacleElm = null;
+
+    this.createDomElement();
+  }
+
+  createDomElement() {
+    this.obstacleElm = document.createElement("div");
+    this.obstacleElm.className = "obstacle";
+    this.obstacleElm.style.width = this.width + "vw";
+    this.obstacleElm.style.height = this.height + "vw";
+    this.obstacleElm.style.left = this.positionX + "vw";
+    this.obstacleElm.style.bottom = this.positionY + "vh";
+
+    boardElm.appendChild(this.obstacleElm);
+
+    setTimeout(() => {
+      this.obstacleElm.remove();
+    }, 8_000);
+  }
+}
+
 const elevator = new Elevator();
 const player = new Player();
 
@@ -159,9 +191,34 @@ setInterval(() => {
   elevator.movement();
 }, 100);
 
+// create objectives
+const objectivesArr = [];
+setInterval(() => {
+  const newObjective = new Objective();
+  objectivesArr.push(newObjective);
+}, 3_000);
+
 // move bullets
 setInterval(() => {
-  player.bullets.forEach((element) => {
-    element.moveBullet();
+  player.bullets.forEach((bullet) => {
+    bullet.moveBullet();
+
+    //check collision with objectives
+    objectivesArr.forEach((objective) => {
+      if (
+        bullet.positionX < objective.positionX + objective.width &&
+        bullet.positionX + bullet.width > objective.positionX &&
+        bullet.positionY < objective.positionY + objective.height &&
+        bullet.positionY + bullet.height > objective.positionY
+      ) {
+        console.log("HIT!");
+        objective.obstacleElm.remove();
+        bullet.bulletElm.remove();
+        player.points += 1;
+        console.log(player.points);
+      }
+    });
   });
-}, 30);
+}, 40);
+
+console.log(player.points);

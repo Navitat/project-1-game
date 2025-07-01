@@ -43,10 +43,18 @@ h1 {
 #player {
   background: #5c7f71;
   position: absolute;
+  z-index: 2;
 }
 
 .bullet {
   background-color: #181818;
   position: absolute;
-  z-index: 2;
+  z-index: 1;
+}
+
+.obstacle {
+  position: absolute;
+  background-color: green;
+  border-radius: 50%;
+  z-index: 0;
 }
