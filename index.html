@@ -15,16 +15,19 @@
     <script src="./js/app.js" defer></script>
   </head>
   <body>
-    <h1>Hit Em! <br />A DOM manipulation shooting game</h1>
-    <div id="main">
+    <div id="intro">
+      <h1>Shoot Em! <br />A DOM manipulation shooting game</h1>
       <div id="instructions">
-        <h3>How To Play</h3>
-      </div>
-      <div id="board">
         <div id="points">
           <h2>POINTS: <span id="points-selector"></span></h2>
         </div>
+        <div id="timer">
+          <h2>TIME LEFT: 00:00</h2>
+        </div>
       </div>
+    </div>
+    <div id="main">
+      <div id="board"></div>
     </div>
   </body>
 </html>

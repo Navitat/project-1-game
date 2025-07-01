@@ -33,15 +33,21 @@ h1 {
   justify-content: space-around;
   align-items: center;
   overflow: hidden;
+  background-image: url("../images/board-bg.jpg");
+  background-size: cover;
 }
 
 #elevator {
-  background-color: #ba8530;
+  /* background-color: #ba8530; */
   position: absolute;
+  background-image: url("../images/wood.jpg");
+  background-size: cover;
 }
 
 #player {
-  background: #5c7f71;
+  /* background: #5c7f71; */
+  background-image: url("../images/cowboy.png");
+  background-size: cover;
   position: absolute;
   z-index: 2;
 }
@@ -54,18 +60,19 @@ h1 {
 
 .obstacle {
   position: absolute;
-  background-color: green;
+  /* background-color: green; */
+  background-image: url("../images/bird.png");
+  background-size: cover;
   border-radius: 50%;
   z-index: 0;
 }
 
-#points {
-  position: relative;
-  bottom: 35vh;
-  left: 20vw;
-  font-size: 26px;
+#intro {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-#instructions {
-  text-align: center;
+#points {
+  font-size: 26px;
 }

@@ -1,18 +1,15 @@
 const boardElm = document.querySelector("#board");
 //boardElm.setAttribute("tabIndex", 0); // make the #board focusable to only move the player when you click on the board (necessary?)
 const pointsSelector = document.querySelector("#points-selector");
-
-const btn = document.querySelector("#test-button");
-
 //
 // CLASSES
 //
 
 class Player {
   constructor() {
-    this.width = 2;
-    this.height = 5;
-    this.positionX = 4;
+    this.width = 6;
+    this.height = 10;
+    this.positionX = 1;
     this.positionY = 1;
     this.playerElm = null;
     this.bullets = [];
@@ -44,6 +41,7 @@ class Player {
 
   moveLeft() {
     this.positionX--;
+    this.playerElm.style.transform = "scaleX(-1)";
     if (this.positionX < 0) {
       this.positionX = 0;
     }
@@ -52,8 +50,9 @@ class Player {
 
   moveRight() {
     this.positionX++;
-    if (this.positionX > 5) {
-      this.positionX = 5;
+    this.playerElm.style.transform = "scaleX(1)";
+    if (this.positionX > 1) {
+      this.positionX = 1;
     }
     this.updateUI();
   }
@@ -109,7 +108,7 @@ class Elevator {
 class Bullet {
   constructor(startingY, bulletSpeed, startingX) {
     this.width = 1;
-    this.height = 0.5;
+    this.height = 1;
     this.positionX = 35; // should be startingX
     this.positionY = startingY;
     //console.log(this.positionY);
@@ -130,9 +129,9 @@ class Bullet {
     // const playerElm = document.querySelector("#player");
     boardElm.appendChild(this.bulletElm);
 
-    setTimeout(() => {
-      this.bulletElm.remove();
-    }, 2000);
+    // setTimeout(() => {
+    //   this.bulletElm.remove();
+    // }, 2000);
   }
 
   updateUI() {
@@ -148,10 +147,10 @@ class Bullet {
 
 class Objective {
   constructor() {
-    this.width = 2;
-    this.height = 2;
+    this.width = 3;
+    this.height = 3;
     this.positionX = Math.floor(Math.random() * (70 - this.width)); //create randomly
-    this.positionY = Math.floor(Math.random() * (60 - this.height)); // create randomly
+    this.positionY = Math.floor(Math.random() * (80 - this.height)); // create randomly
     this.obstacleElm = null;
 
     this.createDomElement();
@@ -161,7 +160,7 @@ class Objective {
     this.obstacleElm = document.createElement("div");
     this.obstacleElm.className = "obstacle";
     this.obstacleElm.style.width = this.width + "vw";
-    this.obstacleElm.style.height = this.height + "vw";
+    this.obstacleElm.style.height = this.height + "vh";
     this.obstacleElm.style.left = this.positionX + "vw";
     this.obstacleElm.style.bottom = this.positionY + "vh";
 
@@ -237,4 +236,4 @@ setInterval(() => {
       }
     }
   }
-}, 40);
+}, 50);
