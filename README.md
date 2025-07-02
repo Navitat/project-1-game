@@ -2,7 +2,12 @@
 
 ## Description
 
-"Ascensor!" is a game where the player needs to reach as fast as possible the elevator that gets him to the next floor.
+"Shoot 'Em!" is a game where the player will have to shoot at objectives (in this case birds) to earn points before time runs up.
+
+## Instructions
+
+- Movement: Use arrow keys "left" and "right" to turn in the direction you want to shoot
+- Shooting: Use the spacebar to shoot.
 
 ## Known Bugs
 
