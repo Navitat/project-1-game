@@ -38,14 +38,12 @@ h1 {
 }
 
 #elevator {
-  /* background-color: #ba8530; */
   position: absolute;
   background-image: url("../images/wood.jpg");
   background-size: cover;
 }
 
 #player {
-  /* background: #5c7f71; */
   background-image: url("../images/cowboy.png");
   background-size: cover;
   position: absolute;
@@ -60,7 +58,6 @@ h1 {
 
 .obstacle {
   position: absolute;
-  /* background-color: green; */
   background-image: url("../images/bird.png");
   background-size: cover;
   border-radius: 50%;

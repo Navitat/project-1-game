@@ -16,7 +16,7 @@ class Player {
     this.bullets = [];
     this.viewpoint = true; // true = right - false = left
     this.points = 0;
-    this.timeRemaining = 10;
+    this.timeRemaining = 60;
 
     this.createPlayer();
   }
@@ -60,14 +60,12 @@ class Player {
   }
 
   shoot() {
-    // console.log("pew pew!");
     const bulletVerticalPos = elevator.positionY + player.height * 0.8;
 
     const bulletSpeed = player.viewpoint ? 1 : -1;
 
     const bullet = new Bullet(bulletVerticalPos, bulletSpeed, this.positionX);
     this.bullets.push(bullet);
-    //console.log(this.bullets);
   }
 }
 
@@ -128,7 +126,6 @@ class Bullet {
     this.bulletElm.style.left = this.positionX + "vw";
     this.bulletElm.style.bottom = this.positionY + "vh";
 
-    // const playerElm = document.querySelector("#player");
     boardElm.appendChild(this.bulletElm);
 
     // setTimeout(() => {
@@ -209,8 +206,8 @@ timer = setInterval(() => {
 
 setTimeout(() => {
   clearInterval(timer);
-  alert("GameOver!");
-}, 10_000);
+  location.reload();
+}, 60_000);
 
 //Elevator up and down
 setInterval(() => {

@@ -1,4 +1,4 @@
-# Ascensor! - A DOM manipulation game
+# Shoot 'Em! - A DOM manipulation shooting game
 
 ## Description
 
