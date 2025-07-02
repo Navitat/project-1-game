@@ -3,10 +3,10 @@ const boardElm = document.querySelector("#board");
 const pointsSelector = document.querySelector("#points-selector");
 
 // AUDIOS
-const gunshot = new Audio("../audios/short-gun-shot.mp3");
+const gunshot = new Audio("audios/short-gun-shot.mp3");
 gunshot.volume = 0.3;
 
-const ding = new Audio("../audios/ding-short.mp3");
+const ding = new Audio("audios/ding-short.mp3");
 ding.volume = 0.3;
 
 //
