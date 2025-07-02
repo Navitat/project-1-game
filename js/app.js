@@ -60,7 +60,7 @@ class Player {
   }
 
   shoot() {
-    const bulletVerticalPos = elevator.positionY + player.height * 0.8;
+    const bulletVerticalPos = elevator.positionY + player.height * 0.7;
 
     const bulletSpeed = player.viewpoint ? 1 : -1;
 
@@ -206,7 +206,9 @@ timer = setInterval(() => {
 
 setTimeout(() => {
   clearInterval(timer);
-  location.reload();
+  // location.reload();
+  modal.style.display = "block";
+  boardElm.style.display = "none";
 }, 60_000);
 
 //Elevator up and down
@@ -255,3 +257,15 @@ setInterval(() => {
     }
   }
 }, 50);
+
+// MODAL
+// Get the modal
+var modal = document.getElementById("myModal");
+
+const showPoints = document.querySelector("#show-points");
+showPoints.innerHTML = player.points;
+
+const btnRestart = document.querySelector("#restart");
+btnRestart.addEventListener("click", () => {
+  location.reload();
+});

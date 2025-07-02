@@ -16,7 +16,14 @@
   </head>
   <body>
     <div id="intro">
-      <h1>Shoot 'Em! <br />A DOM manipulation shooting game</h1>
+      <h1>Shoot 'Em!</h1>
+      <div>
+        <h3>Instructions</h3>
+        <ul>
+          <li>Arroy kews "left" and "right" to turn the player</li>
+          <li>Spacebar to shoot</li>
+        </ul>
+      </div>
       <div id="instructions">
         <div id="points">
           <h2>POINTS: <span id="points-selector"></span></h2>
@@ -28,6 +35,20 @@
     </div>
     <div id="main">
       <div id="board"></div>
+    </div>
+    <!-- The Modal -->
+    <!-- Trigger/Open The Modal -->
+    <!-- <button id="myBtn">Open Modal</button> -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Time's Up!</h2>
+        </div>
+          <h3>Your points: <span id="show-points"></span></h3>
+          <p>Start over?</p>
+          <button id="restart">Restart</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
