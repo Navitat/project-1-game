@@ -246,6 +246,8 @@ setInterval(() => {
           objectivesArr[objective].positionY
       ) {
         pointsSelector.innerText = player.points += 1;
+        const showPoints = document.querySelector("#show-points");
+        showPoints.innerHTML = player.points;
         objectivesArr[objective].obstacleElm.remove();
         objectivesArr.splice(objective, 1);
 
@@ -261,9 +263,6 @@ setInterval(() => {
 // MODAL
 // Get the modal
 var modal = document.getElementById("myModal");
-
-const showPoints = document.querySelector("#show-points");
-showPoints.innerHTML = player.points;
 
 const btnRestart = document.querySelector("#restart");
 btnRestart.addEventListener("click", () => {
