@@ -76,6 +76,7 @@ h1 {
 
 #intro h1 {
   width: 23%;
+  text-align: left;
 }
 
 #points {
@@ -90,7 +91,7 @@ h1 {
 #info {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   margin: 15px;
 }
 

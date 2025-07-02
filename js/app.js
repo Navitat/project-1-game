@@ -1,13 +1,13 @@
 const boardElm = document.querySelector("#board");
-//boardElm.setAttribute("tabIndex", 0); // make the #board focusable to only move the player when you click on the board (necessary?)
 const pointsSelector = document.querySelector("#points-selector");
 
 // AUDIOS
+// these pàths wont work on localhost
 const gunshot = new Audio("/project-1-game/audios/short-gun-shot.mp3");
-gunshot.volume = 0.3;
+gunshot.volume = 0.2;
 
 const ding = new Audio("/project-1-game/audios/ding-short.mp3");
-ding.volume = 0.3;
+ding.volume = 0.2;
 
 //
 // CLASSES
@@ -118,7 +118,6 @@ class Bullet {
     this.height = 1;
     this.positionX = 35; // should be startingX
     this.positionY = startingY;
-    //console.log(this.positionY);
     this.bulletElm = null;
     this.speed = bulletSpeed;
 
@@ -261,7 +260,6 @@ setInterval(() => {
 
         player.bullets[bullet].bulletElm.remove();
         player.bullets.splice(bullet, 1);
-        console.log(player.points);
 
         ding.play();
         break;
