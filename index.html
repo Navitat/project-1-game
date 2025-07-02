@@ -16,12 +16,15 @@
   </head>
   <body>
     <div id="intro">
-      <h1>Shoot 'Em!</h1>
-      <div>
+      <h1>Shoot 'Em! <br> Get Points before time finishes</h1>
+      <div id="info">
         <h3>Instructions</h3>
         <ul>
-          <li>Arroy kews "left" and "right" to turn the player</li>
-          <li>Spacebar to shoot</li>
+          <li>Turn the player: 
+            <img class="icons" src="./images/left-arrow.png" alt="left arrow key">
+            <img class="icons" src="./images/right-arrow.png" alt="right arrow key">
+          </li>
+          <li>Shoot: <img class="icons" src="./images/space.png" alt="spacebar key"></li>
         </ul>
       </div>
       <div id="instructions">
@@ -44,7 +47,7 @@
         <div class="modal-header">
           <h2>Time's Up!</h2>
         </div>
-          <h3>Your points: <span id="show-points"></span></h3>
+          <h3>Your points: <span id="show-points">0</span></h3>
           <p>Start over?</p>
           <button id="restart">Restart</button>
         </div>
