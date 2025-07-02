@@ -2,6 +2,13 @@ const boardElm = document.querySelector("#board");
 //boardElm.setAttribute("tabIndex", 0); // make the #board focusable to only move the player when you click on the board (necessary?)
 const pointsSelector = document.querySelector("#points-selector");
 
+// AUDIOS
+const gunshot = new Audio("../audios/short-gun-shot.mp3");
+gunshot.volume = 0.3;
+
+const ding = new Audio("../audios/ding-short.mp3");
+ding.volume = 0.3;
+
 //
 // CLASSES
 //
@@ -185,6 +192,7 @@ document.addEventListener("keydown", (event) => {
     player.moveRight();
   } else if (event.code === "Space") {
     player.shoot();
+    gunshot.play();
   }
 });
 
@@ -254,6 +262,8 @@ setInterval(() => {
         player.bullets[bullet].bulletElm.remove();
         player.bullets.splice(bullet, 1);
         console.log(player.points);
+
+        ding.play();
         break;
       }
     }
