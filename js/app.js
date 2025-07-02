@@ -152,11 +152,12 @@ class Bullet {
 
 class Objective {
   constructor() {
-    this.width = 3;
-    this.height = 3;
+    this.width = 4;
+    this.height = 4;
     this.positionX = Math.floor(Math.random() * (70 - this.width)); //create randomly
     this.positionY = Math.floor(Math.random() * (80 - this.height)); // create randomly
     this.obstacleElm = null;
+    this.type = Math.random() < 0.9 ? 0 : 1; // 0 black bird - 1 white bird, biased towards 0
 
     this.createDomElement();
   }
@@ -168,6 +169,9 @@ class Objective {
     this.obstacleElm.style.height = this.height + "vh";
     this.obstacleElm.style.left = this.positionX + "vw";
     this.obstacleElm.style.bottom = this.positionY + "vh";
+    if (this.type === 1) {
+      this.obstacleElm.style.filter = "invert(1)";
+    }
 
     boardElm.appendChild(this.obstacleElm);
 
@@ -252,7 +256,11 @@ setInterval(() => {
         player.bullets[bullet].positionY + player.bullets[bullet].height >
           objectivesArr[objective].positionY
       ) {
-        pointsSelector.innerText = player.points += 1;
+        if (objectivesArr[objective].type === 0) {
+          pointsSelector.innerText = player.points += 1;
+        } else if (objectivesArr[objective].type === 1) {
+          pointsSelector.innerText = player.points += 2;
+        }
         const showPoints = document.querySelector("#show-points");
         showPoints.innerHTML = player.points;
         objectivesArr[objective].obstacleElm.remove();
