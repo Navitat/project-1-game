@@ -133,10 +133,6 @@ class Bullet {
     this.bulletElm.style.bottom = this.positionY + "vh";
 
     boardElm.appendChild(this.bulletElm);
-
-    // setTimeout(() => {
-    //   this.bulletElm.remove();
-    // }, 2000);
   }
 
   updateUI() {
@@ -155,7 +151,7 @@ class Objective {
     this.width = 4;
     this.height = 4;
     this.positionX = Math.floor(Math.random() * (70 - this.width)); //create randomly
-    this.positionY = Math.floor(Math.random() * (80 - this.height)); // create randomly
+    this.positionY = 15 + Math.floor(Math.random() * (60 - this.width)); // create randomly
     this.obstacleElm = null;
     this.type = Math.random() < 0.9 ? 0 : 1; // 0 black bird - 1 white bird, biased towards 0
 
@@ -167,6 +163,12 @@ class Objective {
     this.obstacleElm.className = "obstacle";
     this.obstacleElm.style.width = this.width + "vw";
     this.obstacleElm.style.height = this.height + "vh";
+    if (this.positionX >= 27 && this.positionX <= 30) {
+      this.positionX -= 10;
+    }
+    if (this.positionX >= 30 && this.positionX <= 38) {
+      this.positionX += 10;
+    }
     this.obstacleElm.style.left = this.positionX + "vw";
     this.obstacleElm.style.bottom = this.positionY + "vh";
     if (this.type === 1) {
@@ -202,6 +204,7 @@ document.addEventListener("keydown", (event) => {
 //
 //TIMER
 //
+
 let timer;
 timer = setInterval(() => {
   player.timeRemaining--;
