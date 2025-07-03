@@ -1,5 +1,7 @@
 # Shoot 'Em! - A DOM manipulation shooting game
 
+![My image](./images/cowboy-2.png)
+
 ## Description
 
 "Shoot 'Em!" is a game where the player will have to shoot at birds to earn points before time runs up.
@@ -17,4 +19,3 @@
 
 - when a bullet hits an element that just disappeared, points might go up
 - Bullets dont appear from the exact position of the "pistol" on the player image
-- Some objectives appear on the middle on the screen, where the player can't reach
