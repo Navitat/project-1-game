@@ -4,10 +4,10 @@ const pointsSelector = document.querySelector("#points-selector");
 // AUDIOS
 // these pàths wont work on localhost
 const gunshot = new Audio("/project-1-game/audios/short-gun-shot.mp3");
-gunshot.volume = 0.2;
+gunshot.volume = 0.1;
 
 const ding = new Audio("/project-1-game/audios/ding-short.mp3");
-ding.volume = 0.2;
+ding.volume = 0.1;
 
 //
 // CLASSES
