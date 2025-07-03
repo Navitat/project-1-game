@@ -235,7 +235,7 @@ const objectivesArr = [];
 setInterval(() => {
   const newObjective = new Objective();
   objectivesArr.push(newObjective);
-}, 3_000);
+}, 2_000);
 
 // move bullets
 setInterval(() => {
@@ -259,6 +259,7 @@ setInterval(() => {
         player.bullets[bullet].positionY + player.bullets[bullet].height >
           objectivesArr[objective].positionY
       ) {
+        // check type of objective
         if (objectivesArr[objective].type === 0) {
           pointsSelector.innerText = player.points += 1;
         } else if (objectivesArr[objective].type === 1) {
