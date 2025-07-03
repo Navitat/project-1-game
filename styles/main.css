@@ -44,7 +44,7 @@ h1 {
 }
 
 #player {
-  background-image: url("../images/cowboy.png");
+  background-image: url("../images/cowboy-2.png");
   background-size: cover;
   position: absolute;
   z-index: 2;

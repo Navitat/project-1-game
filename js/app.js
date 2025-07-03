@@ -15,8 +15,8 @@ ding.volume = 0.2;
 
 class Player {
   constructor() {
-    this.width = 6;
-    this.height = 10;
+    this.width = 4;
+    this.height = 11;
     this.positionX = 1;
     this.positionY = 1;
     this.playerElm = null;
@@ -51,8 +51,8 @@ class Player {
   moveLeft() {
     this.positionX--;
     this.playerElm.style.transform = "scaleX(-1)";
-    if (this.positionX < 0) {
-      this.positionX = 0;
+    if (this.positionX < 1) {
+      this.positionX = 1;
     }
     this.updateUI();
   }
@@ -60,14 +60,14 @@ class Player {
   moveRight() {
     this.positionX++;
     this.playerElm.style.transform = "scaleX(1)";
-    if (this.positionX > 1) {
-      this.positionX = 1;
+    if (this.positionX > 2) {
+      this.positionX = 2;
     }
     this.updateUI();
   }
 
   shoot() {
-    const bulletVerticalPos = elevator.positionY + player.height * 0.7;
+    const bulletVerticalPos = elevator.positionY + this.height * 0.6;
 
     const bulletSpeed = player.viewpoint ? 1 : -1;
 
